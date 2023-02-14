@@ -1,74 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
-    <title>Calculator</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>Calculator</title>
 </head>
+
 <body>
-    <div class="container">
-        <div class="calc-body">
-          <div class="calc-screen">
-            <div id="displayupper" class="calc-operation"></div>
-            <div id="displaylower" class="calc-typed"></div>
-          </div>
-          <div class="calc-button-row">
-            <button onclick="clickedValue('C')" class="button c">C</button>
-            <button  class="button l">≠</button>
-            <button onclick="clickedValue('%')" class="button l">%</button>
-            <button onclick="clickedValue('/')" class="button l">/</button>
-          </div>
-          <div class="calc-button-row">
-            <button onclick="clickedValue(7)" class="button">7</button>
-            <button onclick="clickedValue(8)" class="button">8</button>
-            <button onclick="clickedValue(9)" class="button">9</button>
-            <button onclick="clickedValue('*')" class="button l">x</button>
-          </div>
-          <div class="calc-button-row">
-            <button onclick="clickedValue(4)" class="button">4</button>
-            <button onclick="clickedValue(5)" class="button">5</button>
-            <button onclick="clickedValue(6)" class="button">6</button>
-            <button onclick="clickedValue('-')" class="button l">−</button>
-          </div>
-          <div class="calc-button-row">
-            <button onclick="clickedValue(1)" class="button">1</button>
-            <button onclick="clickedValue(2)" class="button">2</button>
-            <button onclick="clickedValue(3)" class="button">3</button>
-            <button onclick="clickedValue('+')" class="button l">+</button>
-          </div>
-          <div class="calc-button-row">
-            <button onclick="clickedValue('.')" class="button">.</button>
-            <button onclick="clickedValue(0)" class="button">0</button>
-            <button class="button"> < </button>
-                <button onclick="clickedValue('=')"class="button l">=</button>
-            </div>
-          </div>
-        </div>
+  <div class="container">
+    <div class="calc-body">
+      <div class="calc-screen">
+        <div id="displayupper" class="calc-operation"></div>
+        <div id="displaylower" class="calc-typed"></div>
+      </div>
+      <div class="calc-button-row">
+        <button onclick="clickedValue('C')" class="button c">C</button>
+        <button class="button l">≠</button>
+        <button onclick="clickedValue('%')" class="button l">%</button>
+        <button onclick="clickedValue('/')" class="button l">/</button>
+      </div>
+      <div class="calc-button-row">
+        <button onclick="clickedValue(7)" class="button">7</button>
+        <button onclick="clickedValue(8)" class="button">8</button>
+        <button onclick="clickedValue(9)" class="button">9</button>
+        <button onclick="clickedValue('*')" class="button l">x</button>
+      </div>
+      <div class="calc-button-row">
+        <button onclick="clickedValue(4)" class="button">4</button>
+        <button onclick="clickedValue(5)" class="button">5</button>
+        <button onclick="clickedValue(6)" class="button">6</button>
+        <button onclick="clickedValue('-')" class="button l">−</button>
+      </div>
+      <div class="calc-button-row">
+        <button onclick="clickedValue(1)" class="button">1</button>
+        <button onclick="clickedValue(2)" class="button">2</button>
+        <button onclick="clickedValue(3)" class="button">3</button>
+        <button onclick="clickedValue('+')" class="button l">+</button>
+      </div>
+      <div class="calc-button-row">
+        <button onclick="clickedValue('.')" class="button">.</button>
+        <button onclick="clickedValue(0)" class="button">0</button>
+        <button class="button">
+          < </button>
+            <button onclick="clickedValue('=')" class="button l">=</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script>
-    let flag = 0;
-    function clickedValue(value){
-        let display = document.getElementById("displayupper");
-        let display2 = document.getElementById("displaylower");
-        let val1,val2,temp;
-        // console.log(display);
-    
-            if(value==='C'){
-                display.innerHTML='';
-                display2.innerHTML='';
-            }
-            else if(value==="="){
-                display2.innerText = eval(display.innerText);
-                display.innerText= '';
-            }
-            else{
-                display.innerText += value;
-            }
-        
-        // console.log(display);
+  let flag = 0;
+  function clickedValue(value) {
+    let display = document.getElementById("displayupper");
+    let display2 = document.getElementById("displaylower");
+    // let val1, val2, temp;
+    if (value === 'C') {
+      display.innerHTML = '';
+      display2.innerHTML = '';
     }
+    else if (value === "=") {
+      display2.innerText = eval(display.innerText);
+      flag = 1;
+      // display.innerText = '';
+    }
+    else if (value === "<") {
+      display.innerText = display.innerText.slice(0, -1);
+    }
+    else {
+      let tmp = flag == 1 ? display.innerText = '' : display.innerText;
+      display.innerText += value;
+      flag = 0;
+    }
+  }
 </script>
+
 </html>
